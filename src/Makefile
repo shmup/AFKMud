@@ -5,12 +5,13 @@
 
 #Change this to reflect whichever compiler you want to use.
 CC      = g++
-#CC      = clang++-4.0
+# CC      = clang++-16
 
 #Type of machine to compile for. Athlon works just as well on Duron too.
 #The march option needs to match the general family of CPU.
 #If you don't know what to set for these options, and your system administrator doesn't either, comment this line out
 #MACHINE = -mtune=athlon64 -march=athlon64
+MACHINE = -mtune=skylake -march=skylake
 
 #Uncomment if compiling in Windows under Cygwin
 #CYGWIN = 1
@@ -44,7 +45,7 @@ IMC = 1
 #Uncomment this to enable SQL support.
 #DO NOT ENABLE if running in Cygwin. Cygwin has no library support!
 #The link argument should be either -lmysqlclient or -lmariadb depending on which DB solution the server is using.
-#LIB_MYSQL = -lmariadb
+LIB_MYSQL = -lmysqlclient
 
 #Miscellaneous compiler options.
 OPT_FLAG = -pipe -Os
@@ -54,7 +55,7 @@ DEBUG_FLAG = -g2
 #GCC 4.8+ memory checking option. https://code.google.com/p/address-sanitizer/
 #MEM_FLAG = -fsanitize=address -fno-omit-frame-pointer
 
-ifneq ($(CC), clang++-4.0)
+ifneq ($(CC), clang++-16)
    W_FLAGS = -std=c++1z -Wall -Wshadow -Wmissing-format-attribute -Wpointer-arith -Wcast-align -Wredundant-decls -Wswitch-default -Wuseless-cast -Wwrite-strings -Wstrict-null-sentinel -Wformat -Wformat-security -Wformat-signedness -Wtype-limits
 else
    W_FLAGS = -std=c++1z -Wall -Wshadow -Wmissing-format-attribute -Wpointer-arith -Wcast-align -Wredundant-decls -Wswitch-default -Wwrite-strings -Wformat -Wformat-security -Wformat-signedness -Wtype-limits -fsanitize=address
