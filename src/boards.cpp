@@ -30,6 +30,7 @@
  ****************************************************************************/
 
 #include <sys/stat.h>
+#include <ctime>
 #if defined(WIN32)
 #include <unistd.h>
 #endif
